@@ -20,6 +20,38 @@ pub struct MinecraftVersion {
     #[serde(rename = "minimumLauncherVersion")]
     minimum_launcher_version: i32,
     logging: Logging,
+    libraries: Library
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+struct Library {
+    downloads: LibraryDownload,
+    name: String,
+    rules: Rules,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+struct LibraryDownload {
+    artifact: Artifact,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+struct Rules {
+    action: String,
+    os: Os,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+struct Os {
+    name: String
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+struct Artifact {
+    path: String,
+    sha1: String,
+    size: i64,
+    url: String
 }
 
 #[derive(Debug, Serialize, Deserialize)]
